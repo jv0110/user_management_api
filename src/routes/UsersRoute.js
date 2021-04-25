@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const UsersContoller = require('../controllers/UsersController')
-const authToken = require('../helpers/valToken');
+const authToken = require('../middlewares/valToken');
 
 router.get('/users', UsersContoller.getUsers)
 router.get('/user/:id', UsersContoller.getUser)

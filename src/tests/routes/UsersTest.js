@@ -47,19 +47,11 @@ describe('GET user:id', () => {
       email: 'joaovitor3592@gmail.com',
       password: 'LegenDary123'
     });
-    const res = await chai.request(server)
-    .post('/api/login')
-    .send({
-      email: 'joaovitor3592@gmail.com',
-      password: 'LegenDary123'
-    });
-    token = 'Bearer ' + res.body.token;
   });
   describe('Status 400', () => {
     it('Returns 400 if the id is invalid', (done) => {
       chai.request(server)
       .get('/api/user/12')
-      .set({ 'Authorization': token })
       .end((err, res) => {
         res.should.have.status(400);
         res.body.should.be.a('object');
@@ -72,7 +64,6 @@ describe('GET user:id', () => {
     it('Returns 200 if a user is returned', async () => {
       const res = await chai.request(server)
       .get(`/api/user/${user._id}`)
-      .set({ 'Authorization': token })
       res.should.have.status(200);
       res.body.should.be.a('object');
       res.body.should.include.property('name');
@@ -84,48 +75,9 @@ describe('GET user:id', () => {
       await UsersModel.deleteMany({})
       const res = await chai.request(server)
       .get('/api/user/' + user._id)
-      .set({ 'Authorization': token })
       res.should.have.status(404);
       res.body.should.be.a('object');
       res.body.should.include.property('msg').eql('User not found');
-    });
-  });
-  describe('Status 401', () => {
-    it('if authorization token is not sent', (done) => {
-      chai.request(server)
-      .get('/api/users')
-      .send({})
-      .end((err, res) => {
-        res.should.have.status(401);
-        res.body.should.be.a('object');
-        res.body.should.have.property('msg').eql('Invalid token');
-        done(err);
-      });
-    });
-    it('if token is not Bearer', (done) => {
-      chai.request(server)
-      .get('/api/users')
-      .set({ 'Authorization': "Uchiha 123hjgn7"})
-      .send({})
-      .end((err, res) => {
-        res.should.have.status(401);
-        res.body.should.be.a('object');
-        res.body.should.have.property('msg').eql('Invalid token type');
-
-        done(err);
-      });
-    });
-    it('if token value is invalid', (done) => {
-      chai.request(server)
-      .get('/api/users')
-      .set({'Authorization': 'Bearer 3490u309j'})
-      .send({})
-      .end((err, res) => {
-        res.should.have.status(401);
-        res.body.should.be.a('object');
-        res.body.should.have.property('msg').eql('Invalid token value');
-        done(err);
-      });
     });
   });
 });

@@ -4,7 +4,7 @@ const UsersContoller = require('../controllers/UsersController')
 const authToken = require('../helpers/valToken');
 
 router.get('/users', UsersContoller.getUsers)
-router.get('/user/:id', authToken, UsersContoller.getUser)
+router.get('/user/:id', UsersContoller.getUser)
 router.post('/user', authToken, UsersContoller.postUser)
 router.put('/user/:id', authToken, UsersContoller.updateUser)
 router.delete('/user/:id', authToken, UsersContoller.deleteUser)

@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 class UsersContoller{
   async getUsers(req, res){
     try{
-      const users = await UsersModel.find()
+      const users = await UsersModel.find().select('name email')
       if(!users.length) return res.status(404).json({
         msg: 'No users found'
       })
@@ -21,7 +21,7 @@ class UsersContoller{
       return res.status(400).json({ msg: 'Invalid id' })
     }
     try{
-      const user = await UsersModel.findOne({ _id: id.toString() })
+      const user = await UsersModel.findOne({ _id: id.toString() }).select('email')
       if(!user) return res.status(404).json({ msg: 'User not found' })
 
       return res.status(200).json(user)

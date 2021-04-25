@@ -1,0 +1,42 @@
+{
+  "name": "users_management_api",
+  "version": "1.0.0",
+  "description": "Users management api bult with Nodejs, Express, Mongodb, JWT and BDD/TDD testing with Mocha and Chai",
+  "main": "index.js",
+  "scripts": {
+    "start": "SET NODE_ENV=default&& node index.js",
+    "dev": "SET NODE_ENV=dev&& nodemon server index.js",
+    "test": "SET NODE_ENV=test&& mocha --timeout 10000 ./src/tests/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "users_management_api"
+  },
+  "keywords": [
+    "musics",
+    "api",
+    "artists",
+    "albums",
+    "musics"
+  ],
+  "author": "jv0110",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^8.3.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.6",
+    "consign": "^0.1.6",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.8.13",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
+  }
+}

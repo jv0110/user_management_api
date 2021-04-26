@@ -7,5 +7,5 @@ User management API made with Nodejs, Express, JWT for user authentication and T
 Route to get all the users:
 localhost:3000/api/users
 
-route to get an specific route by id:
+route to get an specific user by id:
 localhost:3000/api/user/id

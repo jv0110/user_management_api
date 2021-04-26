@@ -43,6 +43,8 @@ class UsersContoller{
         return res.status(400).json({msg: 'Pass in the email'})
       }else if(!data.password){
         return res.status(400).json({msg: 'Pass in the password'})
+      }else if(!data.admin){
+        return res.status(400).json({msg: 'Pass in the admin level'})
       }
     }
     try{

@@ -1,7 +1,7 @@
 const chai = require('chai')
 const request = require('chai-http')
-const server = require('../../../index')
-const UsersModel = require('../../models/UsersModel')
+const server = require('../../../../index')
+const UsersModel = require('../../../models/UsersModel')
 
 chai.use(request)
 chai.should()

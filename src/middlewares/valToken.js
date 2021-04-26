@@ -17,6 +17,9 @@ module.exports = (req, res, next) => {
       msg: 'Invalid token value'
     })
   }
+  if(decode.admin !== 1) return res.status(401).json({
+    msg: 'You do not have admin level for this'
+  });
   req.user = {
     _id: decode._id,
     email: decode.email

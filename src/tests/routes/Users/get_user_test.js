@@ -12,7 +12,8 @@ describe('GET user:id', () => {
     user = await UsersModel.create({
       name: 'João Vitor',
       email: 'joaovitor3592@gmail.com',
-      password: 'LegenDary123'
+      password: 'LegenDary123',
+      admin: 1
     });
   });
   describe('Status 400', () => {

@@ -54,7 +54,6 @@ describe('/Login', () => {
     })
     it('If the email is not found in the database', async () => {
       const data = {
-        name: 'João Vitor',
         email: 'joaovitor3592@gmail.com',
         password: 'LegenDary123'
       }
@@ -69,7 +68,8 @@ describe('/Login', () => {
       await UsersModel.create({
         name: 'João Vitor',
         email: 'joaovitor3592@gmail.com',
-        password: 'LegenDary123'
+        password: 'LegenDary123',
+        admin: 1
       })
       const res = await chai.request(server).post('/api/login').send({
         email: 'joaovitor3592@gmail.com',
@@ -86,7 +86,8 @@ describe('/Login', () => {
       await UsersModel.create({
         name: 'João Vitor',
         email: 'joaovitor3592@gmail.com',
-        password: 'LegenDary123'
+        password: 'LegenDary123',
+        admin: 1
       })
     })
     it('if the user logs in and a tokens is returned', async () => {

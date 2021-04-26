@@ -12,7 +12,8 @@ describe('POST users', () => {
     await UsersModel.create({
       name: 'João Vitor Sousa',
       email: 'joaovitor3592@gmail.com',
-      password: 'LegenDary123'
+      password: 'LegenDary123',
+      admin: 1
     })
     const res = await chai.request(server)
     .post('/api/login')
@@ -27,7 +28,8 @@ describe('POST users', () => {
       const data = {
         name: 'Amanda Beninga',
         email: 'amanda@outlook.com',
-        password: 'Banana61789'
+        password: 'Banana61789',
+        admin: 1
       };
       const res = await chai.request(server)
       .post('/api/user')

@@ -12,7 +12,8 @@ describe('PUT user', () => {
     user = await UsersModel.create({
       name: 'Amanda Beningna',
       email: 'amanda@outlook.com',
-      password: 'LegenDary123'
+      password: 'LegenDary123',
+      admin: 1
     });
     const res = await chai.request(server)
     .post('/api/login')

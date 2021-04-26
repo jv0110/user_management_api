@@ -103,6 +103,23 @@ describe('POST users', () => {
         done(err);
       });
     });
+    it('Returns 400 if admin is not sent', done => {
+      const data = {
+        name: 'Um nome',
+        email: 'email@outlook.com',
+        password: 'tortademaca'
+      };
+      chai.request(server)
+      .post('/api/user')
+      .set({ 'Authorization': token })
+      .send(data)
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('msg').eql('Pass in the admin level');
+        done(err);
+      });
+    });
   });
   describe('Status 401', () => {
     it('if authorization token is not sent', (done) => {

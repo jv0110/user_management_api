@@ -39,7 +39,8 @@ class Login{
     }
     const access_token = jwt({
       _id: user._id,
-      email: user.email
+      email: user.email,
+      admin: user.admin
     })
     return res.status(200).json({
       token: access_token

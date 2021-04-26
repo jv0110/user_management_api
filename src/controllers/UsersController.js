@@ -21,7 +21,7 @@ class UsersContoller{
       return res.status(400).json({ msg: 'Invalid id' })
     }
     try{
-      const user = await UsersModel.findOne({ _id: id.toString() }).select('email')
+      const user = await UsersModel.findOne({ _id: id.toString() }).select('name email')
       if(!user) return res.status(404).json({ msg: 'User not found' })
 
       return res.status(200).json(user)

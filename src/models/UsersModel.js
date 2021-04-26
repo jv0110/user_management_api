@@ -24,8 +24,8 @@ const UserSchema = new mongoose.Schema({
   admin: {
     type: Number,
     required: true,
-    min: 0,
-    max: 1
+    min: 1,
+    max: 2
   }
 });
 UserSchema.pre('save', async function (next){

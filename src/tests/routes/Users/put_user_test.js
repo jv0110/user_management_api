@@ -144,3 +144,36 @@ describe('PUT user', () => {
     });
   });
 });
+describe('PUT user(NOT ADMIN)', () => {
+  beforeEach(async() => {
+    await UsersModel.deleteMany();
+    user = await UsersModel.create({
+      name: 'João Vitor Sousa',
+      email: 'joaovitor3592@gmail.com',
+      password: 'LegenDary123',
+      admin: 2
+    })
+    const res = await chai.request(server)
+    .post('/api/login')
+    .send({
+      email: 'joaovitor3592@gmail.com',
+      password: 'LegenDary123'
+    });
+    token = 'Bearer ' + res.body.token;
+  });
+  describe('Status 401', () => {
+    it('If user does not have admin level', done => {
+      chai.request(server)
+      .put('/api/user/' + user._id)
+      .set({ 'Authorization': token })
+      .send({})
+      .end((err, res) => {
+        res.should.have.status(401);
+        res.body.should.be.a('object');
+        res.body.should.have.property('msg').eql('You do not have admin level for this');
+  
+        done(err);
+      });
+    });
+  });
+});

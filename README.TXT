@@ -1,0 +1,1 @@
+User management API made with Nodejs, Express, JWT for user authentication and TDD/BDD with Chai and Mocha

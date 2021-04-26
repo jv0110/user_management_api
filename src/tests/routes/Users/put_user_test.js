@@ -108,7 +108,7 @@ describe('PUT user', () => {
   describe('Status 401', () => {
     it('if authorization token is not sent', (done) => {
       chai.request(server)
-      .get('/api/users')
+      .put('/api/user/' + user._id)
       .send({})
       .end((err, res) => {
         res.should.have.status(401);
@@ -119,7 +119,7 @@ describe('PUT user', () => {
     });
     it('if token is not Bearer', (done) => {
       chai.request(server)
-      .get('/api/users')
+      .put('/api/user/' + user._id)
       .set({ 'Authorization': "Uchiha 123hjgn7"})
       .send({})
       .end((err, res) => {
@@ -132,7 +132,7 @@ describe('PUT user', () => {
     });
     it('if token value is invalid', (done) => {
       chai.request(server)
-      .get('/api/users')
+      .put('/api/user/' + user._id)
       .set({'Authorization': 'Bearer 3490u309j'})
       .send({})
       .end((err, res) => {

@@ -47,7 +47,7 @@ describe('Delete user', () => {
   describe('Status 401', () => {
     it('if authorization token is not sent', (done) => {
       chai.request(server)
-      .get('/api/users')
+      .delete('/api/user/' + user._id)
       .send({})
       .end((err, res) => {
         res.should.have.status(401);
@@ -58,7 +58,7 @@ describe('Delete user', () => {
     });
     it('if token is not Bearer', (done) => {
       chai.request(server)
-      .get('/api/users')
+      .delete('/api/user/' + user._id)
       .set({ 'Authorization': "Uchiha 123hjgn7"})
       .send({})
       .end((err, res) => {
@@ -71,7 +71,7 @@ describe('Delete user', () => {
     });
     it('if token value is invalid', (done) => {
       chai.request(server)
-      .get('/api/users')
+      .delete('/api/user/' + user._id)
       .set({'Authorization': 'Bearer 3490u309j'})
       .send({})
       .end((err, res) => {
